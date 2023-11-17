@@ -1,0 +1,36 @@
+{
+  "name": "cistem-rest-api-template",
+  "version": "0.1.0",
+  "description": "Template de REST API para proyectos backend de Cistem.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon --config ./nodemon.json ./index.js",
+    "build": "webpack --mode production",
+    "start": "node ./shared/dist/index.production.min.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.23.3",
+    "@babel/node": "^7.22.19",
+    "@babel/preset-env": "^7.23.3",
+    "babel-loader": "^9.1.3",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.0.1",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-node-externals": "^3.0.0"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-validator": "^7.0.1",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "sequelize": "^6.35.0",
+    "uuid": "^9.0.1"
+  }
+}
