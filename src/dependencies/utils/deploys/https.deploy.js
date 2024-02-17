@@ -4,19 +4,21 @@ const fs = require('fs');
 
 /**
  * Habilita el servidor en HTTPS.
- * @param {object} deployConfig - Define la configuración del despligue del servidor.
- * @param {object} deployConfig.env - Define el entorno a precargar.
- * @param {object} deployConfig.port - Define el puerto de despliegue de la aplicación.
- * @param {object} deployConfig.server - Define el servidor a precargar.
+ * 
+ * @name httpsDeploy
+ * @param {object} config - Define la configuración de despligue del servidor.
+ * @param {object} config.server - Define el servidor a cargar.
+ * @param {number} config.port - Define el puerto de despligue de la aplicación.
+ * @param {string} config.env - Define el entorno que se ejecutará.
  * @returns Inicialización del servidor.
  */
-const httpsDeploy = ( deployConfig ) => {
+const httpsDeploy = ( config ) => {
 
     //? Desestructuración de variables de entorno
     const { HOST_HTTPS, SSL_KEY, SSL_CERT } = process.env;
 
     //? Desestructuración de propiedades
-    const { env, port, server } = deployConfig;
+    const { server, port, env } = config;
 
     //? Configuración de certificados SSL
     const options = {
@@ -24,11 +26,11 @@ const httpsDeploy = ( deployConfig ) => {
         cert: fs.readFileSync( SSL_CERT ).toString('utf-8')
     }
 
-    //? Inicialización de servidor en HTTPS
+    //? Inicialización de servidor HTTPS
     const serverHTTPS = https.createServer( options, server );
 
     return serverHTTPS.listen(port, () => {
-        console.log(`⚡ [${ env }]: running at https://${ HOST_HTTPS }:${ port }`);
+        console.log(`⚡ [${ env }]: running at https://${ HOST_HTTPS }:${ port }`)
     });
 
 }

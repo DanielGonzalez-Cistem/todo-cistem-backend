@@ -1,12 +1,8 @@
-# **[Nombre Proyecto]**
+# **TODOS Cistem BackEnd**
 
-<div align="center">
-    <img src="" alt="[Banner Proyecto]" />
-</div>
+Aplicación de TODOS de Cistem.
 
-[Contexto del Proyecto] 
-
-Bienvenido al repositorio oficial del proyecto **[Nombre Proyecto]**. Aquí se aloja el código fuente de la aplicación **[Nombre Proyecto]** en calidad de backend, construido con el framework **[Vue JS](https://vuejs.org/guide/quick-start.html)**.
+Bienvenido al repositorio oficial del proyecto **todo-cistem-backend**. Aquí se aloja el código fuente de la aplicación **todo-cistem-backend** en calidad de backend, construido con el framework **[Vue JS](https://vuejs.org/guide/quick-start.html)**.
 
 ## **Guía de Instalación**
 
@@ -26,16 +22,16 @@ Para realizar el montaje de esta aplicación para avances en su desarrollo, siga
     > Una vez instalado, ejecute el comando anterior para determinar si se realizo la instalación.
 
 
-3. ✨ **Clone el repositorio de `[Nombre Proyecto]`**:
+3. ✨ **Clone el repositorio de `todo-cistem-backend`**:
 
     ```sh
-    git clone [Repositorio Proyecto]
+    git clone https://github.com/DanielGonzalez-Cistem/todo-cistem-backend.git
     ```
 
 4. ✨ **Nos situamos en la raíz del proyecto**:
 
     ```sh
-    cd "[Nombre Directorio]"
+    cd "todo-cistem-backend"
     ```
 
 5. ✨ **Instalamos los módulos de Node JS**:
@@ -63,7 +59,34 @@ Una vez montado el proyecto procederemos a ejecutar la aplicación, pero antes d
 4. ✨ **En el contenido, ingrese lo siguiente:** 
 
     ```sh
-    [Coloque Aquí las Variables de Entorno]
+    #* Variables de Entorno
+    #* 1. Es importante, que este archivo, este en la raíz del proyecto.
+    #* 2. Copie y pegue este archivo en la raíz.
+    #* 3. Renombre el archivo copiado a ".env" y la app hará el resto.
+    #* 4. Se recomienda dejar las variables de entorno en el orden ya especifícado.
+
+    #? Tipo de Entorno (development|production)
+    NODE_ENV="development"
+
+    #? Versión de Producto
+    VERSION="0.1.0-alpha"
+
+    #? Puertos de Aplicación
+    APP_PORT=""
+    AUTH_PORT=""
+
+    #? Lista de Origenes Permitidos
+    LIST_ORIGINS_CORS=""
+
+    #? Habilitar HTTPS (OK|"")
+    HTTPS=""
+
+    #? Host de la Aplicación al Desplegarse
+    HOST=""
+
+    #? Ruta Absoluta de Certificados SSL
+    SSL_KEY=""
+    SSL_CERT=""
     ```
 
 5. **✨ Especifique los valores correspondientes en las variables de entorno**-
@@ -83,7 +106,7 @@ npm run dev
 La consola, debería regresar una respuesta como esta:
 
 ```sh
-✨ [Nombre Proyecto] v0.1.0-alpha inicializado...
+✨ todo-cistem-backend v0.1.0-alpha inicializado...
 
 ⚡ [APP]: running at http://<ip-domain>:<port>
 ⚡ [AUTH]: running at http://<ip-domain>:<port>

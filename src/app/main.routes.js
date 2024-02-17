@@ -1,18 +1,14 @@
 //* Importaciones globales
 const { Router } = require('express');
-
-//* Importación de dependencias
 const dependencies = require('../dependencies');
 
 //* Importación de enrutadores
-const { welcomeRouter } = require('./V1/routers');
+const welcomeRouter = require('./V1/welcome/router');
 
 //? Desestructuración de dependencias
-const { httpError } = dependencies;
+const { httpErrorHanlder } = dependencies;
 
-/**
- * @type {Express} Enrutador principal del ambiente 'app'.
- */
+//? Enrutador principal del ambiente APP
 const appRouter = Router();
 
 /**
@@ -24,7 +20,7 @@ const PATH_URL = '/api/v1/app';
 appRouter.use(`${ PATH_URL }`, welcomeRouter(dependencies));
 
 //* Manejador de errores
-appRouter.use( httpError.serviceNotFound );
-appRouter.use( httpError.errorCaught );
+appRouter.use( httpErrorHanlder.serviceNotFound );
+appRouter.use( httpErrorHanlder.errorCaught );
 
 module.exports = { appRouter };

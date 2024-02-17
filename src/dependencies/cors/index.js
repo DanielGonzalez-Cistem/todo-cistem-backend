@@ -1,23 +1,34 @@
-//* Importaciones globales
+//* Importaciones
 const cors = require('cors');
 
 /**
  * Habilita CORS para todos los origenes especificados.
- * @returns Retorna funcionalidades de CORS.
+ * 
+ * @name allowedOriginsCors
+ * @returns {Function} Configuraciones de CORS.
  */
-const allowedOriginsCORS = () => {
+const allowedOriginsCors = () => {
 
-    const { LIST_ORIGINS_CORS } = process.env;
+    //? Desestructuración de variables de entorno
+    const { LIST_ORIGINS_CORS } = process.env;   
     
+    //? Evaluación de origenes permitidos
     if ( LIST_ORIGINS_CORS !== '' ) {
-        
+
         /**
-         * @type {Array} Lista de origenes permitidos.
-        */
+         * @type {string[]} Lista de origenes permitidos.
+         */
         const whiteList = LIST_ORIGINS_CORS.split('|');
 
         return cors({
-            origin: whiteList
+            origin: (origin, callback) => {
+                if ( whiteList.indexOf(origin) !== -1 ) {
+                    callback(null, true);
+                } else {
+                    callback(new Error(`El origen '${ whiteList.indexOf(origin) }' no esta permitido.`))
+                }
+            }
+            //NOTE: Aquí se pueden agregar más configuraciones...
         });
 
     }
@@ -26,4 +37,4 @@ const allowedOriginsCORS = () => {
 
 }
 
-module.exports = { allowedOriginsCORS };
+module.exports = { allowedOriginsCors };

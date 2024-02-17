@@ -2,28 +2,26 @@
 require('dotenv').config();
 
 //* Importación de dependencias
-const dependencies = require('./src/dependencies');
+const { utils, models } = require('./src/dependencies');
 
-//* Importación del núcleo de enrutadores
+//* Importación de runApp de la aplicación
 const { runApp } = require('./src/run.app');
 
 //* Importación de enrutadores principales
 const { appRouter } = require('./src/app/main.routes');
 const { authRouter } = require('./src/auth/main.routes');
 
-//? Desestrucutración de variables de entorno
-const { NODE_ENV, VERSION, APP_PORT, AUTH_PORT, HTTPS } = process.env;
+//* Inicialización de servidores
+const AppServer = runApp(appRouter);
+const AuthServer = runApp(authRouter);
 
-//? Desestructuración de dependencias
-const { utils } = dependencies;
+//? Desestructuración de variables de entorno
+const { NODE_ENV, APP_VERSION, APP_PORT, AUTH_PORT, HTTPS } = process.env;
 
-//? Inicialización de servidores
-const AppServer = runApp( appRouter );
-const AuthServer = runApp( authRouter );
+//? Ejecución de servidores
+if ( NODE_ENV === 'production' && Boolean(HTTPS) ) {
 
-if ( NODE_ENV === 'prod' && Boolean( HTTPS ) ) {
-
-    console.log('✅ Desplegando servidor HTTPS...');
+    console.log('✅ Desplegando servidor HTTPS');
 
     utils.deploys.httpsDeploy({
         env: 'APP',
@@ -39,7 +37,7 @@ if ( NODE_ENV === 'prod' && Boolean( HTTPS ) ) {
 
 } else {
 
-    console.log('✅ Desplegando servidor HTTP...');
+    console.log('✅ Desplegando servidor HTTP');
 
     utils.deploys.httpDeploy({
         env: 'APP',
@@ -55,4 +53,5 @@ if ( NODE_ENV === 'prod' && Boolean( HTTPS ) ) {
 
 }
 
-console.log(`✨ [Nombre Proyecto] v${ VERSION } inicializado...\n`);
+console.log(`✨ Dealer Tommy v${ APP_VERSION } ha sido inicializado...\n`);
+// models.checkConnectionDB();

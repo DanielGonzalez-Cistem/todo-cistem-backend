@@ -1,6 +1,6 @@
 //* Importaciópn de errores
-const { ExceptionError } = require('./errors/exception.error');
-const { errorCaught, serviceNotFound } = require('./handlers');
+const { ExceptionError } = require('./handlers');
+const { errorCaught, serviceNotFound } = require('./errors');
 
 module.exports = {
     errorCaught,

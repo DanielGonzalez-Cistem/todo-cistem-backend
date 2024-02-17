@@ -8,30 +8,28 @@
  */
 const finalDatetime = ( options ) => {
 
-    //? Desestructuración de propiedades
     const { date, order, separator } = options;
 
-    
     //* [0] - day | [1] - month | [2] - year
     const dateSplit = date.split('-');
 
     switch ( order ) {
         case 'DD-MM-YYYY':
-            if ( separator == 'no_separator' ) return `${ dateSplit[0] }${ dateSplit[1] }${ dateSplit[2] }`;
+            if ( separator == 'no_separator' ) return `${ dateSplit[0] }${ dateSplit[1] }${ dateSplit[2] }`; 
             if ( separator == 'dash' ) return `${ dateSplit[0] }-${ dateSplit[1] }-${ dateSplit[2] }`;
             if ( separator == 'diagonal' ) return `${ dateSplit[0] }/${ dateSplit[1] }/${ dateSplit[2] }`;
         break;
 
         case 'MM-DD-YYYY':
-            if ( separator == 'no_separator' ) return `${ dateSplit[1] }${ dateSplit[0] }${ dateSplit[2] }`;
+            if ( separator == 'no_separator' ) return `${ dateSplit[1] }${ dateSplit[0] }${ dateSplit[2] }`; 
             if ( separator == 'dash' ) return `${ dateSplit[1] }-${ dateSplit[0] }-${ dateSplit[2] }`;
-            if ( separator == 'diagonal' ) return `${ dateSplit[1] }/${ dateSplit[0] }/${ dateSplit[2] }`;
+            if ( separator == 'diagonal' ) return `${ dateSplit[1] }/${ dateSplit[0] }/${ dateSplit[2] }`;   
         break;
 
         case 'YYYY-MM-DD':
-            if ( separator == 'no_separator' ) return `${ dateSplit[2] }${ dateSplit[1] }${ dateSplit[0] }`;
+            if ( separator == 'no_separator' ) return `${ dateSplit[2] }${ dateSplit[1] }${ dateSplit[0] }`;   
             if ( separator == 'dash' ) return `${ dateSplit[2] }-${ dateSplit[1] }-${ dateSplit[0] }`;
-            if ( separator == 'diagonal' ) return `${ dateSplit[2] }/${ dateSplit[1] }/${ dateSplit[0] }`;
+            if ( separator == 'diagonal' ) return `${ dateSplit[2] }/${ dateSplit[1] }/${ dateSplit[0] }`;   
         break;
     }
 

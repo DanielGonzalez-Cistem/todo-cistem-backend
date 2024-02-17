@@ -1,36 +1,36 @@
 /**
- * Obtiene la hora formateada en 'AM' o 'PM' a partir de una fecha asignada.
- * @param {date|string} date - Fecha y hora a convertir.
- * @returns Formato de hora.
+ * Función que obtiene la hora formateada a 'AM' o 'PM' a partir de una fecha asignada.
+ * @param date {Date} Fecha y hora para realizar la conversión.
+ * @returns Retorna la hora formada en cadena de texto.
  */
 const getTime = ( date ) => {
 
     /**
-     * @type {string} Indicador de tiempo <AM|PM>.
+     * @type {String} Indicador de tiempo <AM|PM>
      */
     let timeIndicator = 'AM';
 
     /**
-     * @type {date} Extracción de la hora.
+     * @type {Date} Extracción de la hora.
      */
-    let hours = date.getHours().toString().padStart(2, '0');
+    let hours     = date.getHours();
 
     /**
-     * @type {date} Extracción de los minutos.
+     * @type {Date} Extracción de los minutos.
      */
     const minutes = date.getMinutes().toString().padStart(2, '0');
 
     /**
-     * @type {date} Extracción de los segundos.
+     * @type {Date} Extracción de los segundos.
      */
     const seconds = date.getSeconds().toString().padStart(2, '0');
 
-    if ( hours >= 12 ) {
+    if (hours >= 12) {
         timeIndicator = 'PM';
-        if( hours > 12 ) { hours -= 12; }
+        if (hours > 12) { hours -= 12; }
     }
 
-    return `${ hours }:${ minutes }:${ seconds } ${ timeIndicator }`; // 10:28:15 AM
+    return `${ hours.toString().padStart(2, '0') }:${ minutes }:${ seconds } ${ timeIndicator }`;
 
 }
 

@@ -1,18 +1,14 @@
 //* Importaciones globales
 const { Router } = require('express');
-
-//* Importación de dependencias
 const dependencies = require('../dependencies');
 
 //* Importación de enrutadores
-const { welcomeRouter } = require('./V1/routers');
+const welcomeRouter = require('./V1/welcome/router');
 
 //? Desestructuración de dependencias
-const { httpError } = dependencies;
+const { httpErrorHanlder } = dependencies;
 
-/**
- * @type {Express} Enrutador principal del ambiente 'auth'.
- */
+//? Enrutador principal del ambiente AUTH
 const authRouter = Router();
 
 /**
@@ -24,7 +20,7 @@ const PATH_URL = '/api/v1/auth';
 authRouter.use(`${ PATH_URL }`, welcomeRouter(dependencies));
 
 //* Manejador de errores
-authRouter.use( httpError.serviceNotFound );
-authRouter.use( httpError.errorCaught );
+authRouter.use( httpErrorHanlder.serviceNotFound );
+authRouter.use( httpErrorHanlder.errorCaught );
 
 module.exports = { authRouter };

@@ -2,7 +2,7 @@
 const fs = require('fs');
 
 //* Importación de dependencias
-const { datetimeFormat } = require('../formatters');
+const { formatters } = require('../../utils');
 
 /**
  * Generá un archivo de logs de errors, por día.
@@ -13,19 +13,19 @@ const generateLogs = ( errorStack ) => {
     /**
      * @type {string} Fecha actual para información del log.
      */
-    const currentDate = datetimeFormat({
-        dateOrder: 'DD-MM-YYYY',
-        dateSeparator: 'diagonal',
-        dateDisplay: 'fulldate' 
+    const currentDate = formatters.datetimeFormat({
+        date_order: 'DD-MM-YYYY',
+        date_separator: 'diagonal',
+        date_display: 'fulldate' 
     });
 
     /**
      * @type {string} Fecha actual para el nombre del archivo log generado.
      */
-    const todayLogs = datetimeFormat({ 
-        dateOrder: 'DD-MM-YYYY', 
-        dateSeparator: 'no_separator', 
-        dateDisplay: 'only_date' 
+    const todayLogs = formatters.datetimeFormat({ 
+        date_order: 'DD-MM-YYYY', 
+        date_separator: 'no_separator', 
+        date_display: 'only_date' 
     });
 
     /**

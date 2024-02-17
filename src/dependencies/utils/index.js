@@ -1,8 +1,10 @@
-//* Importación de utilidades
-const deploys = require('./deploy');
-const { generateLogs } = require('./generate_logs');
+//* Importaciones
+const deploys = require('./deploys');
+const formatters = require('./formatters');
+const { repositoryRegex } = require('./regex');
 
 module.exports = {
     deploys,
-    generateLogs
+    formatters,
+    repositoryRegex,
 }

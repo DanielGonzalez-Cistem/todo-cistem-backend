@@ -1,4 +1,4 @@
-//* Importación de utilidades
+//* Importación de dependencias
 const { finalDatetime, getDate, getTime } = require('./utils');
 
 //* Definiciones JS Docs
@@ -14,25 +14,24 @@ const { finalDatetime, getDate, getTime } = require('./utils');
 
 /**
  * Formato de retorno o despliegue del tiempo.
- * @typedef {'only_date' | 'only_time' | 'fulldate'} DateDisplay
+ * @typedef {'only_date' | 'only_date' | 'fulldate'} DateDisplay
  */
 
 /**
- * 
- * @param {date|string} date - Define la fehcha a formatear.
- * @param {object} datetimeConfig - Define la configuración del formato de fechas.
- * @param {DateDisplay} datetimeConfig.dateDisplay - Define como la fecha será desplegada.
- * @param {DateOrder} datetimeConfig.dateOrder - Define el tipo de orden que tendrá la fecha.
- * @param {DateSeparator} datetimeConfig.dateSeparator - Define el tipo de separador que tendrá la fecha.
- * @param {*} datetimeConfig 
+ * Devuelve una fecha formateada con la configuración especificada.
+ * @param {object} options - Define la configuración del formateo.
+ * @param {DateOrder} options.date_order - Especifica el tipo de orden que tendrá la fecha.
+ * @param {DateSeparator} options.date_separator - Especifica el tipo de separador que tendrá la fecha.
+ * @param {DateDisplay} options.date_display - Especifica como la fecha será desplegada.
+ * @param {string|date} date - Valor a formatear.
+ * @returns {date} Fecha formateada.
  */
-const datetimeFormat = ( datetimeConfig, date ) => {
+const datetimeFormat = ( options, date ) => {
 
-    //? Desestructuración de propiedades
-    const { dateDisplay, dateOrder, dateSeparator } = datetimeConfig;
+    const { date_order, date_separator, date_display } = options;
 
     /**
-     * @type {date} Fecha y hora a formatear
+     * @type {Date} Fecha y hora a formatear.
      */
     const datetime = date || new Date();
 
@@ -40,33 +39,29 @@ const datetimeFormat = ( datetimeConfig, date ) => {
     const timeFormated = getTime( datetime );
 
     //? Retorno de solo la hora
-    if ( dateDisplay === 'only_time') return `${ timeFormated }`;
+    if ( date_display === 'only_time' ) return `${ timeFormated }`;
 
     //? Retorno de solo la fecha
-    if ( dateDisplay === 'only_date' ) {
+    if ( date_display === 'only_date' ) {
 
-        const cleanDate = finalDatetime({  
+        const cleanDate = finalDatetime({
             date: dateFormated,
-            separator: dateSeparator,
-            order: dateOrder
+            separator: date_separator,
+            order: date_order
         });
-
-        // console.log('CLEAN_DATE 2: ', cleanDate);
 
         return `${ cleanDate }`;
 
     }
 
-    //? Retorno completo de tiempo
-    if ( dateDisplay === 'fulldate' ) {
+    //? Retorno completo de fecha y hora
+    if ( date_display === 'fulldate' ) {
 
-        const cleanDate = finalDatetime({  
+        const cleanDate = finalDatetime({
             date: dateFormated,
-            separator: dateSeparator,
-            order: dateOrder
+            separator: date_separator,
+            order: date_order
         });
-
-        // console.log('CLEAN_DATE: ', cleanDate);
 
         return `${ cleanDate } ${ timeFormated }`;
 
